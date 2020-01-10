@@ -1,0 +1,56 @@
+@import 'variables';
+@import 'mixins';
+
+// reusable buttons
+
+.btn {
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  padding: 10px 30px;
+  font-weight: 300;
+  text-decoration: none;
+  border-radius: 200px;
+  transition: background-color 0.5s, border 0.2s, color 0.2s;
+  &:hover,
+  &:active {
+    background-color: $darken-orange;
+  }
+
+  &.btn--full {
+    margin-right: 15px;
+    background-color: $orange;
+    @include border($orange);
+    color: $white;
+
+    &:hover,
+    &:active {
+      background-color: $darken-orange;
+    }
+  }
+
+  &.btn--ghost {
+    @include border($darken-orange);
+    color: $orange;
+
+    &:hover,
+    &:active {
+      @include border($darken-orange);
+      color: $white;
+    }
+  }
+}
+
+// links
+a {
+  color: $orange;
+  padding-bottom: 1px;
+  @include border-bottom(1px, $orange);
+  transition: border-bottom 0.2s, color 0.2s;
+
+  &:hover,
+  &:active {
+    color: #555;
+    @include border-bottom(1px, transparent);
+  }
+}

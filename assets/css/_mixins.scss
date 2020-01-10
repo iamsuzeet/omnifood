@@ -1,0 +1,123 @@
+@import 'variables';
+
+@mixin border($color) {
+  border: 1px solid $color;
+}
+
+@mixin border-bottom($px, $color) {
+  border-bottom: $px solid $color;
+}
+
+@mixin heading($color, $fontSize, $wordSpacing, $letterSpacing) {
+  color: $color;
+  font-size: $fontSize;
+  word-spacing: $wordSpacing;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: $letterSpacing;
+
+  @include mq(md) {
+    font-size: 1.8rem;
+  }
+
+  @include mq(sm) {
+    font-size: 1.5rem;
+  }
+}
+
+@mixin section-heading() {
+  @include heading(#000, 1.8rem, 2px, 1px);
+  margin-bottom: 30px;
+  text-align: center;
+
+  &::after {
+    display: block;
+    height: 2px;
+    background-color: $orange;
+    content: '';
+    width: 100px;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  @include mq(md) {
+    font-size: 1.5rem;
+  }
+
+  @include mq(sm) {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+@mixin item-1-of-4() {
+  padding: 1%;
+
+  h3 {
+    @include heading(#000, 1.1rem, 0px, 0);
+    margin-bottom: 15px;
+  }
+
+  @include mq(md) {
+    h3 {
+      font-size: 1rem;
+    }
+  }
+
+  @include mq(sm) {
+    h3 {
+      font-weight: 500;
+    }
+  }
+}
+
+@mixin icon-big() {
+  font-size: 3.5rem;
+  display: block;
+  color: $orange;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+@mixin icon-small() {
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+  color: $orange;
+  font-size: 1.2rem;
+  margin-right: 10px;
+
+  // align text and icons
+  line-height: 1.2rem;
+  vertical-align: middle;
+  margin-top: -5px;
+}
+
+// Media Queries
+// $break  - RWD break point values, change them in _config.scss. Default: bootstrap grid
+// @usage  - `.Nav {@include mq(sm) {...}}`
+@mixin mq($break) {
+  @if $break == 'sm' {
+    // tablet
+    @media (max-width: $sm-device) {
+      @content;
+    }
+  } @else if $break == 'md' {
+    // ipad
+    @media (max-width: $md-device) {
+      @content;
+    }
+  } @else if $break == 'md-land' {
+    //landscape
+    @media (max-width: $md-device-landscape) {
+      @content;
+    }
+  } @else if $break == 'lg' {
+    // High res desktop and TVs
+    @media (max-width: $lg-device) {
+      @content;
+    }
+  } @else {
+    @error "No value could be retrieved for '#{$break}'";
+  }
+}
